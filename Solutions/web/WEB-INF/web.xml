@@ -19,6 +19,16 @@
         <url-pattern>/Tutorial4_16</url-pattern>
     </servlet-mapping>
     
+      <servlet>
+        <servlet-name>RegServlet</servlet-name>
+        <servlet-class>RegServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>RegServlet</servlet-name>
+        <url-pattern>/RegServlet</url-pattern>
+    </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30
