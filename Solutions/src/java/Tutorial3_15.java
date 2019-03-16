@@ -5,7 +5,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
 @WebServlet(name = "Tutorial4_15", urlPatterns = "/Tutorial4_15")
-public class Tutorial4_15 extends HttpServlet {
+public class Tutorial3_15 extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         res.setContentType("text/html");

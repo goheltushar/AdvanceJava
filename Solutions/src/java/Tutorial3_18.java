@@ -5,7 +5,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
 @WebServlet(name = "Tutorial4_18", urlPatterns = "/Tutorial4_18")
-public class Tutorial4_18 extends HttpServlet {
+public class Tutorial3_18 extends HttpServlet {
 
     int requestCounter;
     
