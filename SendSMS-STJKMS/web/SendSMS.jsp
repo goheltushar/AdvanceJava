@@ -18,7 +18,7 @@
             <table>
                 <tr>
                     <td> Enter Message : </td>
-                    <td> <input type="text" name="message" placeholder="Enter Your Message Here !!!"/></td>
+                    <td> <input type="text" name="message" placeholder="Enter Your Message Here !!!" value="${Text}"/></td>
                     <td> <input type="Submit" name="Submit" value="Submit" /></td>
                 </tr>
             </table>
