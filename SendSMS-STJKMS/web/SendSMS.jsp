@@ -13,6 +13,10 @@
     </head>
     <body>
 
+        <%
+            session.setMaxInactiveInterval(300);
+        %>
+
         <form method="get" action="processSendSMS.jsp">
 
             <table>
@@ -23,5 +27,6 @@
                 </tr>
             </table>
         </form>
+                    
     </body>
 </html>
