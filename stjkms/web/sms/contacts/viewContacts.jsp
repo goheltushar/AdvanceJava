@@ -66,7 +66,7 @@
                                 </c:forEach>
                                 <tr>
                                     <th colspan="4">
-                                        <a class="btn btn-lg btn-primary btn-block text-uppercase" href="../../main.html" role="button">Home</a>
+                                        <a class="btn btn-lg btn-primary btn-block text-uppercase" href="../../main.jsp" role="button">Home</a>
                                     </th>
                                 </tr>
                             </tbody>
