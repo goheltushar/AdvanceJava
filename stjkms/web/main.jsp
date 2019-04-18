@@ -20,13 +20,18 @@
 
 </head>
 <body>
+    
+     <%
+    String email = (String) session.getAttribute("email");
+    if (null != email) { %>
+    
+    <jsp:include page="titleBar.jsp" />
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
 				<div class="card card-signin my-5">
 					<div class="card-body">
-						<h5 class="card-title text-center">SendSMS - STJKMS</h5>
-
+						
                                                 <a class="btn btn-lg btn-primary btn-block text-uppercase" href="sms/contacts/insertContact.html" role="button">Insert Contact</a>
 						<hr class="my-4">
 
@@ -39,7 +44,7 @@
                                                 <a class="btn btn-lg btn-primary btn-block text-uppercase" href="sms/reports/viewStatus.jsp" role="button">View Status</a>
 						<hr class="my-4">
 
-						<hr class="my-4">
+                                             						<hr class="my-4">
 						
 					</div>
 				</div>
@@ -47,4 +52,8 @@
 		</div>
 	</div>
 </body>
+<%        } else { %>
+    <a class="btn btn-lg btn-primary btn-block text-uppercase" href="logout.jsp" role="button"> Please Login First ...</a>
+    <%}
+    %>
 </html>

@@ -40,11 +40,11 @@
 
         <title>SendSMS-STJKMS checkReport</title>
     </head>
-    
+
     <body>
-         <%
-        String email = (String) session.getAttribute("email");
-        if (null != email) { %>
+        <%
+            String email = (String) session.getAttribute("email");
+            if (null != email) { %>
         <div class="container">
             <div class="row">
                 <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -134,58 +134,62 @@
                                         }
                                         zipFile.close();
 
-                                        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
-                                        String str = "";
-                                        int i = 1;
-                                        int j = 1;
-                                        count = 1;
-                                        StringTokenizer st = null;
-                                        StringBuffer sb = null;
-                                        String token = "";
+                                        if (file != null) {
 
-                                        ArrayList remaining = new ArrayList();
-                                        ArrayList remaining_element = null;
+                                            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+                                            String str = "";
+                                            int i = 1;
+                                            int j = 1;
+                                            count = 1;
+                                            StringTokenizer st = null;
+                                            StringBuffer sb = null;
+                                            String token = "";
 
-                                        while ((str = br.readLine()) != null) {
-                                            if (i++ == 1) {
-                                                continue;
-                                            }
-                                            if (str.contains("Delivered")) {
-                                                continue;
-                                            }
-                                            st = new StringTokenizer(str, ",");
-                                            j = 0;
-                                            remaining_element = new ArrayList();
-                                            while (st.hasMoreTokens()) {
-                                                j++;
-                                                token = st.nextToken();
-                                                if (j == 2 || j == 3) {
-                                                    token = token.substring(token.indexOf('"') + 1, token.lastIndexOf('"'));
-                                                    if (j == 2) {
-                                                        token = token.substring(2);
-                                                        remaining_element.add(token);
-                                                        psmt.setString(1, token);
-                                                        rs = psmt.executeQuery();
-                                                        if (rs.next()) {
-                                                            remaining_element.add(rs.getString("Name") + " " + rs.getString("Surname"));
+                                            ArrayList remaining = new ArrayList();
+                                            ArrayList remaining_element = null;
+
+                                            while ((str = br.readLine()) != null) {
+                                                if (i++ == 1) {
+                                                    continue;
+                                                }
+                                                if (str.contains("Delivered")) {
+                                                    continue;
+                                                }
+                                                st = new StringTokenizer(str, ",");
+                                                j = 0;
+                                                remaining_element = new ArrayList();
+                                                while (st.hasMoreTokens()) {
+                                                    j++;
+                                                    token = st.nextToken();
+                                                    if (j == 2 || j == 3) {
+                                                        token = token.substring(token.indexOf('"') + 1, token.lastIndexOf('"'));
+                                                        if (j == 2) {
+                                                            token = token.substring(2);
+                                                            remaining_element.add(token);
+                                                            psmt.setString(1, token);
+                                                            rs = psmt.executeQuery();
+                                                            if (rs.next()) {
+                                                                remaining_element.add(rs.getString("Name") + " " + rs.getString("Surname"));
+                                                            } else {
+                                                                remaining_element.add("Unknown Number");
+                                                            }
+                                                            rs.close();
                                                         } else {
-                                                            remaining_element.add("Unknown Number");
+                                                            remaining_element.add(token);
                                                         }
-                                                        rs.close();
-                                                    } else {
-                                                        remaining_element.add(token);
                                                     }
                                                 }
+                                                remaining.add(remaining_element);
+                                                count++;
+                                                //out.print("<br> <br>");
                                             }
-                                            remaining.add(remaining_element);
-                                            count++;
-                                            //out.print("<br> <br>");
-                                        }
-                                        br.close();
-                                        ArrayList temp = new ArrayList();
-                                        for (int k = 0; k < remaining.size(); k++) {
-                                            temp = (ArrayList) remaining.get(k);
-                                            out.print(temp.get(0) + " " + temp.get(1) + " " + temp.get(2) + "<br>");
+                                            br.close();
+
+                                            ArrayList temp = new ArrayList();
+                                            for (int k = 0; k < remaining.size(); k++) {
+                                                temp = (ArrayList) remaining.get(k);
+                                                out.print(temp.get(0) + " " + temp.get(1) + " " + temp.get(2) + "<br>");
+                                            }
                                         }
                                     } else {
                                         out.println(txnid);
@@ -215,13 +219,13 @@
 
 
 
-    
 
 
 
-<%        } else { %>
-    <jsp:forward page="../../logout.jsp"  />
-    <%}
-    %>
-</body>
+
+        <%        } else { %>
+        <a class="btn btn-lg btn-primary btn-block text-uppercase" href="../../logout.jsp" role="button"> Please Login First ...</a>
+        <%}
+        %>
+    </body>
 </html>

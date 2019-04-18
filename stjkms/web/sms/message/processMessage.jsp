@@ -51,7 +51,7 @@
     </head>
 
     <%        } else { %>
-    <jsp:forward page="../../logout.jsp"  />
+    <a class="btn btn-lg btn-primary btn-block text-uppercase" href="../../logout.jsp" role="button"> Please Login First ...</a>
     <%}
     %>
 

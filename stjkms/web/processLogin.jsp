@@ -19,14 +19,14 @@
                 if (request.getParameter("email").equals("goheltushar1401@gmail.com")
                         && request.getParameter("password").equals("stjkms")) {
                     session.setAttribute("email", "goheltushar1401@gmail.com");
-                    RequestDispatcher rd = request.getRequestDispatcher("main.html");
+                    RequestDispatcher rd = request.getRequestDispatcher("main.jsp");
                     rd.forward(request, response);
                 }else{
                     RequestDispatcher rd = request.getRequestDispatcher("index.html");
                     rd.forward(request, response);
                 }
             }else{
-                RequestDispatcher rd = request.getRequestDispatcher("main.html");
+                RequestDispatcher rd = request.getRequestDispatcher("main.jsp");
                     rd.forward(request, response);
             }
 

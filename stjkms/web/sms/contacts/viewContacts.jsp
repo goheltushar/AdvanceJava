@@ -78,7 +78,7 @@
     </div>
     <%        } else { %>
    
-    Please <a href="../../logout.jsp"> Login First ... </a>
+    <a class="btn btn-lg btn-primary btn-block text-uppercase" href="../../logout.jsp" role="button"> Please Login First ...</a>
     <%}
     %>
     
