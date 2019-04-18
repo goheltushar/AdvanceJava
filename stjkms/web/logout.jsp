@@ -15,8 +15,9 @@
         <%
             session.removeAttribute("email");
             session.invalidate();
-            RequestDispatcher rd = request.getRequestDispatcher("index.html");
-            rd.forward(request, response);
+            response.sendRedirect("index.html");
         %>
+        
+        
     </body>
 </html>

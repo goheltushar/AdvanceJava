@@ -21,6 +21,10 @@
         <title>SendSMS-STJKMS Login</title>
     </head>
 
+    <%
+        String email = (String) session.getAttribute("email");
+        if (null != email) { %>
+    
     <sql:setDataSource var="con" driver="com.mysql.jdbc.Driver"
                        url="jdbc:mysql://localhost:3306/stjkms"
                        user="root" password="Kripalu@1008" />
@@ -72,4 +76,10 @@
             </div>
         </div>
     </div>
+    <%        } else { %>
+   
+    Please <a href="../../logout.jsp"> Login First ... </a>
+    <%}
+    %>
+    
 </html>

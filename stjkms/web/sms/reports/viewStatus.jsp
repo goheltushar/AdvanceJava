@@ -40,8 +40,11 @@
 
         <title>SendSMS-STJKMS checkReport</title>
     </head>
+    
     <body>
-    <body>
+         <%
+        String email = (String) session.getAttribute("email");
+        if (null != email) { %>
         <div class="container">
             <div class="row">
                 <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -212,10 +215,13 @@
 
 
 
-    </body>
+    
 
 
 
-
+<%        } else { %>
+    <jsp:forward page="../../logout.jsp"  />
+    <%}
+    %>
 </body>
 </html>

@@ -20,7 +20,9 @@
         <meta charset="UTF-8">
         <title>SendSMS-STJKMS processInsertContact</title>
     </head>
-
+    <%
+    String email = (String) session.getAttribute("email");
+    if (null != email) { %>
 
     <sql:setDataSource var="con" driver="com.mysql.jdbc.Driver"
                        url="jdbc:mysql://localhost:3306/stjkms"
@@ -37,5 +39,11 @@
 
 
     Record Inserted Successfully.....
+
+    <%        } else { %>
+    <jsp:forward page="../../logout.jsp"  />
+    <%}
+    %>
+
 
 </html>

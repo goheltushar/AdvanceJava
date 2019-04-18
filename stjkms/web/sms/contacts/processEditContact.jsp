@@ -21,6 +21,10 @@
 <title>SendSMS-STJKMS processEditContact</title>
 </head>
 
+<%
+        String email = (String) session.getAttribute("email");
+        if (null != email) { %>
+
 
  <sql:setDataSource var="con" driver="com.mysql.jdbc.Driver"
                        url="jdbc:mysql://localhost:3306/stjkms"
@@ -49,6 +53,10 @@
 	<p>Record Edited Successfully.....</p>
 </c:if>
 
+   <%        } else { %>
+    <jsp:forward page="../../logout.jsp"  />
+    <%}
+    %>
 
 
 
