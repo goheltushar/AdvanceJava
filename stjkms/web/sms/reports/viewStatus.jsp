@@ -32,10 +32,9 @@
                                value="${fn:substringAfter(result_dtxnid,'<RESULT>')}" />
                         <c:set var="dtxnid"
                                value="${fn:substringBefore(result_dtxnid,'</RESULT>')}" />
-
-
-                        <%
-                            //out.println(request.getLo);
+                        <c:out value="${dtxnid}" />
+                        <br>
+                        <%                            //out.println(request.getLo);
                             String txnid = (String) pageContext.getAttribute("dtxnid");
                             int count = 1;
                             if (txnid.length() > 2) {
@@ -70,7 +69,8 @@
                         <c:set var="result_file"
                                value="${fn:substringAfter(result_file,'?')}" />
                         <c:set var="file" value="${fn:substringBefore(result_file,'&')}" />
-
+                        <c:out value="${file}" />
+                        <br>
                         <%
                                 }
                             }

@@ -1,8 +1,5 @@
-<%-- 
-    Document   : processLogin.jsp
-    Created on : 18 Apr, 2019, 1:01:51 PM
-    Author     : administrator
---%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,24 +10,24 @@
     </head>
     <body>
 
-        <%
-            String email = (String) session.getAttribute("email");
-            if (null == email) {
-                if (request.getParameter("email").equals("goheltushar1401@gmail.com")
-                        && request.getParameter("password").equals("stjkms")) {
-                    session.setAttribute("email", "goheltushar1401@gmail.com");
-                    RequestDispatcher rd = request.getRequestDispatcher("main.jsp");
-                    rd.forward(request, response);
-                }else{
-                    RequestDispatcher rd = request.getRequestDispatcher("index.html");
-                    rd.forward(request, response);
-                }
-            }else{
-                RequestDispatcher rd = request.getRequestDispatcher("main.jsp");
-                    rd.forward(request, response);
-            }
 
-        %>
+        <sql:setDataSource var="con" driver="com.mysql.jdbc.Driver"
+                           url="jdbc:mysql://localhost:3306/stjkms"
+                           user="root" password="Kripalu@1008" scope="session"/>
 
+        <c:set var="uname" value="${param.username}" />
+        
+        <sql:query dataSource="${con}" sql="select * from users where username = ? and password = ?" var="result">
+            <sql:param value="${uname}" />
+            <sql:param value="${param.password}" />
+        </sql:query>
+
+        
+        <c:if test="${result.rowCount == 1}" >
+            <c:set var="username" value="${uname}" scope="session" />
+            <jsp:forward page="main.jsp" />
+        </c:if>
+        
+        <jsp:forward page="failLogin.jsp" />
     </body>
 </html>

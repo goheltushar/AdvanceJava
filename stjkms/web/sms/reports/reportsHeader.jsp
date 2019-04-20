@@ -23,9 +23,8 @@
     </head>
 
     <%
-        String email = (String) session.getAttribute("email");
-        if (null == email) {
-    %>
+        String u = (String) session.getAttribute("username");
+        if (null == u) {%>
     <jsp:forward page="../../noLogin.jsp" />
     <%}
     %>
@@ -40,7 +39,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Welcome ${email} <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#">Welcome ${username} <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href=<%=getServletContext().getContextPath() + "/main.jsp"%>>Home<span class="sr-only">(current)</span></a>

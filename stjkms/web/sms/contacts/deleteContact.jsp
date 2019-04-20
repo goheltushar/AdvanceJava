@@ -1,9 +1,5 @@
 
-<jsp:include page="contactsHeader.jsp" />
-
-<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver"
-                   url="jdbc:mysql://localhost:3306/stjkms"
-                   user="root" password="Kripalu@1008" />
+<%@include file="contactsHeader.jsp" %>
 
 
 <c:catch var="catchException">

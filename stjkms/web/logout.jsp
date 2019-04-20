@@ -4,6 +4,7 @@
     Author     : administrator
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,8 +13,8 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <c:remove var="username" scope="session" />
         <%
-            session.removeAttribute("email");
             session.invalidate();
             response.sendRedirect(getServletContext().getContextPath() + "/index.html");
         %>

@@ -1,8 +1,6 @@
 <%@include file="contactsHeader.jsp" %>
 
-<sql:setDataSource var="con" driver="com.mysql.jdbc.Driver"
-                   url="jdbc:mysql://localhost:3306/stjkms"
-                   user="root" password="Kripalu@1008" />
+
 
 <sql:query var="result" dataSource="${con}"
            sql="select * from contacts order by Name" />
