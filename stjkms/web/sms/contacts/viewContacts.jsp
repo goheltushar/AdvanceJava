@@ -1,4 +1,4 @@
-<jsp:include page="contactsHeader.jsp" />
+<%@include file="contactsHeader.jsp" %>
 
 <sql:setDataSource var="con" driver="com.mysql.jdbc.Driver"
                    url="jdbc:mysql://localhost:3306/stjkms"
@@ -39,11 +39,7 @@
                             </tr>
                             <c:set var="i" value="${i + 1 }" />
                         </c:forEach>
-                        <tr>
-                            <th colspan="4">
-                                <a class="btn btn-lg btn-primary btn-block text-uppercase" href="../../main.jsp" role="button">Home</a>
-                            </th>
-                        </tr>
+                       
                         </tbody>
                     </table>
                 </div>

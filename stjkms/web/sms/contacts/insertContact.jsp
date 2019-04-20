@@ -40,7 +40,7 @@
                                     type="submit">Insert Contact</button>
                             <hr class="my-4">
 
-                            <a class="btn btn-lg btn-primary btn-block text-uppercase" href="../../main.jsp" role="button">Home</a>
+                            
 
                         </form>
                     </div>
