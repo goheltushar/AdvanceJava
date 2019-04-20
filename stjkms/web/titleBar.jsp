@@ -16,9 +16,19 @@
               content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
         <link href="css/styles.css" rel="stylesheet">
         <meta charset="UTF-8">
-        <title>successLogin</title>
+        <title>SendSMS : STJKMS</title>
     </head>
     <body>
+        <%
+            String email = (String) session.getAttribute("email");
+            if (null == email) {
+                String noLoginurl = getServletContext().getContextPath() + "/noLogin.jsp";
+        %>
+        <jsp:forward page="${noLoginurl}" />
+        <%}
+        %>
+
+
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">STJKMS </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,10 +41,7 @@
                         <a class="nav-link" href="#">Welcome ${email} <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="logout.jsp">Logout<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href=<%=getServletContext().getContextPath() + "/logout.jsp"%>>Logout<span class="sr-only">(current)</span></a>
                     </li>
             </div>
         </nav>
-
-    </body>
-</html>

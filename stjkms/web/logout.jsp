@@ -15,7 +15,7 @@
         <%
             session.removeAttribute("email");
             session.invalidate();
-            response.sendRedirect("index.html");
+            response.sendRedirect(getServletContext().getContextPath() + "/index.html");
         %>
         
         
