@@ -1,25 +1,14 @@
 
 <!DOCTYPE html>
 <html>
-
     <body>
         <%@include file="header.html" %>
-
         <div class="container">
-
             <hr>
-
-
-
-
-
             <div class="card bg-light">
                 <article class="card-body mx-auto" style="max-width: 400px;">
                     <h4 class="card-title mt-3 text-center">Create Account</h4>
-
-
-
-                    <form>
+                    <form id="signup" action="processSignup.jsp">
                         <div class="form-group input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"> <i class="fa fa-user-secret"></i> </span>
@@ -63,16 +52,16 @@
 
                             <input name="mobile" class="form-control" placeholder="Phone number" type="text" required>
                         </div> <!-- form-group// -->
-
-
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
                         </div> <!-- form-group// -->      
-                        <p class="text-center">Have an account? <a href="">Log In</a> </p>                                                                 
+                        <p class="text-center">Have an account? <a href="index.html">Log In</a> </p>                                                                 
                     </form>
                 </article>
             </div> <!-- card.// -->
 
         </div> 
         <!--container end.//-->
+
+    </body>
 </html>
