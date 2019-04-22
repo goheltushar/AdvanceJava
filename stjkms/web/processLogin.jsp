@@ -16,18 +16,21 @@
                            user="root" password="Kripalu@1008" scope="session"/>
 
         <c:set var="uname" value="${param.username}" />
-        
+
         <sql:query dataSource="${con}" sql="select * from users where username = ? and password = ?" var="result">
             <sql:param value="${uname}" />
             <sql:param value="${param.password}" />
         </sql:query>
 
-        
+
         <c:if test="${result.rowCount == 1}" >
             <c:set var="username" value="${uname}" scope="session" />
-            <jsp:forward page="main.jsp" />
+            <c:if test="${username == 'admin'}" >
+                <jsp:forward page="admin/aindex.jsp" />
+            </c:if>
+
         </c:if>
-        
+
         <jsp:forward page="failLogin.jsp" />
     </body>
 </html>
