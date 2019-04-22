@@ -16,7 +16,7 @@
         <c:remove var="username" scope="session" />
         <%
             session.invalidate();
-            response.sendRedirect(getServletContext().getContextPath() + "/index.html");
+            response.sendRedirect(getServletContext().getContextPath() + "/login.jsp");
         %>
         
         
