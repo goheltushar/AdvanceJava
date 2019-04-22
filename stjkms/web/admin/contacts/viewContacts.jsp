@@ -1,5 +1,7 @@
 <%@include file="../adminHeader.jsp" %>
 
+
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
@@ -10,20 +12,19 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-            <div class="card card-signin my-5">
-                <div class="card-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Mobile</th>
-                                <th scope="col"></th>
-                            </tr>
-                        </thead>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="contactsTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Mobile</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
 
-                        <tbody>
+                    <tbody>
 
                         <c:forEach items="${result.rows}" var="row">
 
@@ -38,13 +39,27 @@
                             </tr>
                             <c:set var="i" value="${i + 1 }" />
                         </c:forEach>
-                       
-                        </tbody>
-                    </table>
-                </div>
+
+                    </tbody>
+                </table>
             </div>
         </div>
+
     </div>
 </div>
+
+
+<script src="${pageContext.request.contextPath}/admin/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="${pageContext.request.contextPath}/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="${pageContext.request.contextPath}/admin/js/demo/datatables-demo.js"></script>
+<link href="${pageContext.request.contextPath}/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+<script>
+                                        $(document).ready(function () {
+                                            $('#contactsTable').DataTable();
+                                        });
+</script>
 
 </html>

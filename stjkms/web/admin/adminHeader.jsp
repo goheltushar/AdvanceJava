@@ -15,6 +15,7 @@
 
     <!-- Custom styles for this template-->
     <link href="${pageContext.request.contextPath}/admin/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet">
 
     <link
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -31,12 +32,17 @@
     <!-- Core plugin JavaScript-->
     <script src="${pageContext.request.contextPath}/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="${pageContext.request.contextPath}/admin/js/sb-admin-2.min.js"></script>
-
+   
 
 
 </head>
+
+<%
+        String u = (String) session.getAttribute("username");
+        if (null == u) {%>
+<jsp:forward page="../noLogin.jsp" />
+<%}
+%>
 
 <body id="page-top">
 
