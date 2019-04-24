@@ -11,12 +11,14 @@
 
         <title>STJKMS - Register</title>
 
-       <!-- Custom fonts for this template-->
+        <!-- Custom fonts for this template-->
         <link href="${pageContext.request.contextPath}/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
         <!-- Custom styles for this template-->
         <link href="${pageContext.request.contextPath}/admin/css/sb-admin-2.min.css" rel="stylesheet">
+
+        
 
     </head>
 
@@ -34,32 +36,35 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                                 </div>
-                                <form class="user">
-                                    <div class="form-group row">
-                                        <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address">
+                                <form class="user" method="post" action="processSignup.jsp" onsubmit="return checkForm()">
+                                     <div class="form-group">
+                                        <input type="text" name="username" class="form-control form-control-user" id="exampleInputUsername" placeholder="Username" required>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                                            <input type="text" name="firstname" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name" required>
                                         </div>
                                         <div class="col-sm-6">
-                                            <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">
+                                            <input type="text" name="lastname" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control form-control-user" id="exampleInputMobile" placeholder="Mobile Number">
+                                        <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address" required>
                                     </div>
-                                    <a href="login.html" class="btn btn-primary btn-user btn-block">
-                                        Register Account
-                                    </a>
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <input type="password" name="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" required>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="password" name="repassword" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="mobile" class="form-control form-control-user" id="exampleInputMobile" placeholder="Mobile Number" required>
+                                    </div>
+                                    
+                                    <button class="btn btn-lg btn-primary btn-block text-uppercase"
+                                            type="submit">Register Account</button>
                                     <hr>
                                 </form>
                                 <hr>
@@ -77,7 +82,7 @@
 
         </div>
 
-      <!-- Bootstrap core JavaScript-->
+        <!-- Bootstrap core JavaScript-->
         <script src="${pageContext.request.contextPath}/admin/vendor/jquery/jquery.min.js"></script>
         <script src="${pageContext.request.contextPath}/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

@@ -6,8 +6,9 @@
 <sql:query var="result" dataSource="${con}"
            sql="select * from ${initParam.contacts_table} order by Name" />
 
-<c:forEach items="${result.rows}" var="row">
 
+
+<c:forEach items="${result.rows}" var="row">
     <c:import url="http://bulkpush.mytoday.com/BulkSms/SingleMsgApi"
               var="result">
         <c:param name="feedid" value="364413" />
@@ -19,6 +20,7 @@
                  value="Radhey Radhey ${row.Name} ${row.Adjective} ${param.inputmessage}" />
     </c:import>
 </c:forEach>
+
 
 <div class="alert alert-success" role="alert">
     <button type="button" class="close" data-dismiss="alert"
