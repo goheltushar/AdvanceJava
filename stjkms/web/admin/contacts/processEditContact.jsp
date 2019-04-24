@@ -4,7 +4,7 @@
 	
 <c:catch var="catchException">
 	<sql:update dataSource="${con}"
-		sql="update contacts set Name = ?,Adjective = ?, Surname = ?, Number = ? where id = ?">
+		sql="update ${initParam.contacts_table} set Name = ?,Adjective = ?, Surname = ?, Number = ? where id = ?">
 		<sql:param value="${param.name}" />
 		<sql:param value="${param.adjective}" />
 		<sql:param value="${param.surname}" />

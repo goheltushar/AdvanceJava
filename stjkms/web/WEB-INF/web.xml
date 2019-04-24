@@ -4,11 +4,41 @@
         <welcome-file>login.jsp</welcome-file>  
     </welcome-file-list>  
 
+
+    <context-param>  
+        <param-name>url</param-name>
+        <param-value>jdbc:mysql://localhost:3306/stjkms</param-value>
+    </context-param>  
+
+    <context-param>  
+        <param-name>targetDir</param-name>
+        <param-value>/home/administrator/tmp</param-value>
+    </context-param>  
+
+    <context-param>  
+        <param-name>user</param-name>
+        <param-value>root</param-value>
+    </context-param>  
+    
+    <context-param>  
+        <param-name>password</param-name>
+        <param-value>Kripalu@1008</param-value>
+    </context-param> 
+    
+    <context-param>  
+        <param-name>contacts_table</param-name>
+        <param-value>contacts_test</param-value>
+    </context-param>   
+
+    
+
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    
+    
     
        
 </web-app>

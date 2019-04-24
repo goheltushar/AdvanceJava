@@ -22,13 +22,7 @@
 
 <body>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                <div class="card card-signin my-5">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">View Status</h5>
-
+   
                         <c:import url="http://stats.mytoday.com/dlr_api"
                                   var="result_dtxnid">
                             <c:param name="feedid" value="364413" />
@@ -95,7 +89,9 @@
                                             + (String) pageContext.getAttribute("file") + "&feedid=364413");
                                     InputStream in = new BufferedInputStream(url.openStream(), 1024);
                                     // make sure we get the actual file
-                                    File targetDir = new File("/tmp/stjkms-reports");
+                                    
+                                    File targetDir = new File();
+                                    
                                     File zip = File.createTempFile("arc", ".zip", targetDir);
                                     OutputStream fout = new BufferedOutputStream(new FileOutputStream(zip));
 
@@ -161,10 +157,11 @@
                                             //out.print("<br> <br>");
                                         }
                                         br.close();
-                        /*ArrayList temp = new ArrayList();
+                        ArrayList temp = new ArrayList();
                                         for (int k = 0; k < delivery_status.size(); k++) {
                                             temp = (ArrayList) delivery_status.get(k);
-                                            out.print(temp.get(0) + " " + temp.get(1) + " " + temp.get(2) + "<br>");*/
+                                            out.print(temp.get(0) + " " + temp.get(1) + " " + temp.get(2) + "<br>");
+                                            }
                         %>
 
                         <c:set var="i" value="1" />
@@ -184,7 +181,7 @@
 
                                             <tbody>
 
-                                                <c:forEach items="${pageContext.getAttribute("delivery_status")}" var="row">
+                                                <c:forEach items="${delivery_status}" var="row">
 
                                                     <tr>
                                                         <th scope="row">${i}</th>
@@ -215,7 +212,7 @@
                                                                     $('#statusTable').DataTable();
                                                                 });
                         </script>
-                        }
+                        
                         <% }
                      } else {
                          out.println(txnid);
@@ -231,12 +228,5 @@
 
 
 
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-    </div>
 </body>
 </html>

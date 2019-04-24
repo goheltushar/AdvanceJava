@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
 <sql:update dataSource="${con}"
-            sql="insert into contacts(Name,Adjective,Surname,Number) values(?,?,?,?)">
+            sql="insert into ${initParam.contacts_table}(Name,Adjective,Surname,Number) values(?,?,?,?)">
 
     <sql:param value="${param.name}" />
     <sql:param value="${param.adjective}" />

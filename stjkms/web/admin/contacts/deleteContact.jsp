@@ -5,7 +5,7 @@
 
 <c:catch var="catchException">
     <sql:update dataSource="${con}"
-                sql="delete from contacts where id = ?">
+                sql="delete from ${initParam.contacts_table} where id = ?">
         <sql:param value="${param.id}" />
     </sql:update>
 </c:catch>

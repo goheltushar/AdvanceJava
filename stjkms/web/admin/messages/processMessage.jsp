@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
 
 <sql:query var="result" dataSource="${con}"
-           sql="select * from contacts_test order by Name" />
+           sql="select * from ${initParam.contacts_table} order by Name" />
 
 <c:forEach items="${result.rows}" var="row">
 
