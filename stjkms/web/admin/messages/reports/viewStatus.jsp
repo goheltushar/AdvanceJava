@@ -37,7 +37,7 @@
                                value="${fn:substringAfter(result_dtxnid,'<RESULT>')}" />
                         <c:set var="dtxnid"
                                value="${fn:substringBefore(result_dtxnid,'</RESULT>')}" />
-                        <c:out value="${dtxnid}" />
+
                         <br>
                         <%                            //out.println(request.getLo);
                             String txnid = (String) pageContext.getAttribute("dtxnid");
@@ -74,7 +74,7 @@
                         <c:set var="result_file"
                                value="${fn:substringAfter(result_file,'?')}" />
                         <c:set var="file" value="${fn:substringBefore(result_file,'&')}" />
-                        <c:out value="${file}" />
+
                         <br>
                         <%
                                 }
@@ -122,19 +122,19 @@
                                         StringBuffer sb = null;
                                         String token = "";
 
-                                        ArrayList remaining = new ArrayList();
-                                        ArrayList remaining_element = null;
+                                        ArrayList delivery_status = new ArrayList();
+                                        ArrayList delivery_status_element = null;
 
                                         while ((str = br.readLine()) != null) {
                                             if (i++ == 1) {
                                                 continue;
                                             }
-                                            if (str.contains("Delivered")) {
+                                            /*if (str.contains("Delivered")) {
                                                 continue;
-                                            }
+                                            }*/
                                             st = new StringTokenizer(str, ",");
                                             j = 0;
-                                            remaining_element = new ArrayList();
+                                            delivery_status_element = new ArrayList();
                                             while (st.hasMoreTokens()) {
                                                 j++;
                                                 token = st.nextToken();
@@ -142,39 +142,88 @@
                                                     token = token.substring(token.indexOf('"') + 1, token.lastIndexOf('"'));
                                                     if (j == 2) {
                                                         token = token.substring(2);
-                                                        remaining_element.add(token);
+                                                        delivery_status_element.add(token);
                                                         psmt.setString(1, token);
                                                         rs = psmt.executeQuery();
                                                         if (rs.next()) {
-                                                            remaining_element.add(rs.getString("Name") + " " + rs.getString("Surname"));
+                                                            delivery_status_element.add(rs.getString("Name") + " " + rs.getString("Surname") + "(" + token + ")");
                                                         } else {
-                                                            remaining_element.add("Unknown Number");
+                                                            delivery_status_element.add("Unknown Name" + "(" + token + ")");
                                                         }
                                                         rs.close();
                                                     } else {
-                                                        remaining_element.add(token);
+                                                        delivery_status_element.add(token);
                                                     }
                                                 }
                                             }
-                                            remaining.add(remaining_element);
+                                            delivery_status.add(delivery_status_element);
                                             count++;
                                             //out.print("<br> <br>");
                                         }
                                         br.close();
+                        /*ArrayList temp = new ArrayList();
+                                        for (int k = 0; k < delivery_status.size(); k++) {
+                                            temp = (ArrayList) delivery_status.get(k);
+                                            out.print(temp.get(0) + " " + temp.get(1) + " " + temp.get(2) + "<br>");*/
+                        %>
 
-                                        ArrayList temp = new ArrayList();
-                                        for (int k = 0; k < remaining.size(); k++) {
-                                            temp = (ArrayList) remaining.get(k);
-                                            out.print(temp.get(0) + " " + temp.get(1) + " " + temp.get(2) + "<br>");
-                                        }
-                                    }
-                                } else {
-                                    out.println(txnid);
-                                }
+                        <c:set var="i" value="1" />
 
-                            } catch (Exception e) {
-                                out.println(e.toString());
-                            }
+                        <div class="container">
+                            <div class="row">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="statusTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Status</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+
+                                                <c:forEach items="${pageContext.getAttribute("delivery_status")}" var="row">
+
+                                                    <tr>
+                                                        <th scope="row">${i}</th>
+                                                        <td>${row[0]}</td>
+                                                        <td>${row[1]}</td>
+                                                    </tr>
+                                                    <c:set var="i" value="${i + 1 }" />
+                                                </c:forEach>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <script src="${pageContext.request.contextPath}/admin/vendor/datatables/jquery.dataTables.min.js"></script>
+                        <script src="${pageContext.request.contextPath}/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+                        <!-- Page level custom scripts -->
+                        <script src="${pageContext.request.contextPath}/admin/js/demo/datatables-demo.js"></script>
+                        <link href="${pageContext.request.contextPath}/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+                        <script>
+                                                                $(document).ready(function () {
+                                                                    $('#statusTable').DataTable();
+                                                                });
+                        </script>
+                        }
+                        <% }
+                     } else {
+                         out.println(txnid);
+                     }
+
+                 } catch (Exception e) {
+                     out.println(e.toString());
+                 }
                         %>
 
 
