@@ -87,11 +87,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Manage PhoneBook</h6>
-                        <a class="collapse-item" href="buttons.html">Add Group</a>
-                        <a class="collapse-item" href="${pageContext.request.contextPath}/admin/contacts/insertContact.jsp">Add Contact</a>
-                        <a class="collapse-item" href="buttons.html">Import Contact</a>
-                        <a class="collapse-item" href="buttons.html">Manage Group</a>
-                        <a class="collapse-item" href="${pageContext.request.contextPath}/admin/contacts/viewContacts.jsp">View Contacts</a>
+                        
                     </div>
                 </div>
             </li>
@@ -105,9 +101,7 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Manage Messages:</h6>
-                        <a class="collapse-item" href="${pageContext.request.contextPath}/admin/messages/enterMessage.jsp">Compose SMS</a>
-                        <a class="collapse-item" href="${pageContext.request.contextPath}/admin/messages/reports/viewStatus.jsp">Delivery Reports</a>
-                        <a class="collapse-item" href="utilities-animation.html">Schedule SMS</a>
+                       
                     </div>
                 </div>
             </li>

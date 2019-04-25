@@ -33,8 +33,6 @@
     <script src="${pageContext.request.contextPath}/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 
-
-
 </head>
 
 <%
