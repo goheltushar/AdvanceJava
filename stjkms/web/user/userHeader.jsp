@@ -32,14 +32,14 @@
     <!-- Core plugin JavaScript-->
     <script src="${pageContext.request.contextPath}/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-
+   
 
 
 </head>
 
 <%
-    String u = (String) session.getAttribute("username");
-    if (null == u) {%>
+        String u = (String) session.getAttribute("username");
+        if (null == u) {%>
 <jsp:forward page="../noLogin.jsp" />
 <%}
 %>
@@ -65,7 +65,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/admin/aindex.jsp">
+                <a class="nav-link" href="${pageContext.request.contextPath}/user/uindex.jsp">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -176,9 +176,8 @@
 
                 </nav>
                 <!-- End of Topbar -->
-
-                <%@include file="../mymodals/logout.html" %>
-
+                 <%@include file="../mymodals/logout.html" %>
+                
                 <%@include file="../mymodals/changepassword.html" %>
-
+                
                 <%@include file="../mymodals/profile.html" %>
