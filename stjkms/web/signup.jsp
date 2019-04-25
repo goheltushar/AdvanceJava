@@ -60,7 +60,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="mobile" class="form-control form-control-user" id="exampleInputMobile" placeholder="Mobile Number" required>
+                                        <input type="number" name="mobile" class="form-control" id="exampleInputMobile" placeholder="Mobile Number" required>
                                     </div>
                                     
                                     <button class="btn btn-lg btn-primary btn-block text-uppercase"

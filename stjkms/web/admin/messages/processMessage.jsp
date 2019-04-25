@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
 
+
 <sql:query var="result" dataSource="${con}"
            sql="select * from ${initParam.contacts_table} order by Name" />
 
@@ -20,6 +21,7 @@
                  value="Radhey Radhey ${row.Name} ${row.Adjective} ${param.inputmessage}" />
     </c:import>
 </c:forEach>
+
 
 
 <div class="alert alert-success" role="alert">
