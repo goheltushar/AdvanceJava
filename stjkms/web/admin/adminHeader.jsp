@@ -38,7 +38,7 @@
 <%
     String u = (String) session.getAttribute("username");
     if (null == u) {%>
-<jsp:forward page="../noLogin.jsp" />
+    <jsp:forward page="../noLogin.jsp" />
 <%}
 %>
 

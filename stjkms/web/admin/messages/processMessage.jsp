@@ -4,6 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
 
 
+<c:if test="${param.pin == initParam.pin}" >
+    
+
 <sql:query var="result" dataSource="${con}"
            sql="select * from ${initParam.contacts_table} order by Name" />
 
@@ -31,5 +34,20 @@
     </button>
     <strong>Success!</strong> Messages has been Submitted Successfully !!! 
 </div>
+
+</c:if>
+
+<c:if test="${param.pin != initParam.pin}" >
+    <div class="alert alert-danger" role="alert">
+    <button type="button" class="close" data-dismiss="alert"
+            aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>Failure!</strong> Messages has not been Submitted due to wrong PIN !!! 
+</div>
+    
+</c:if>
+
+
 
 </html>

@@ -10,17 +10,17 @@
                         <h5 class="card-title text-center">Enter Message</h5>
                         <form class="form-signin" name="enterMessage"
                               action="processMessage.jsp" method="post"
-                              onsubmit="return previewandsendotp();">
+                              id="myFormEnterMessage">
 
 
                             <div class="form-label-group">
                                 <textarea name="inputmessage" id="inputMessage"
                                           class="form-control" required rows="5" autofocus="autofocus"></textarea>
-                           </div>
+                            </div>
 
                             <div class="form-label-group">
                                 <div class="multiselect">
-                                    
+
                                     <div id="checkboxes">
                                         <label for="one"> <input type="checkbox" id="one" />Thursday
                                         </label> <label for="two"> <input type="checkbox" id="two" />Sunday
@@ -29,67 +29,97 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <button class="btn btn-lg btn-primary btn-block text-uppercase"
-                                    type="submit">Preview & Send OTP</button>
-                            <hr class="my-4">
                             
+                            <input type="hidden" name="pin" id="myPin" /> 
                         </form>
+                        
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase"
+                                id="myBtnPSO">Preview & Send OTP</button>
+                        <hr class="my-4">
 
                     </div>
                 </div>
             </div>
         </div>
-
-
     </div>
+
+
+
+
+    <!-- .modal -->
+    <div class="modal fade" id="myBtnPSOModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Preview</h4>                                                             
+                </div> 
+                <div class="modal-body">
+                    <div id="messageDiv"></div>
+                    <hr>
+                    <button type="button" class="btn btn-success" id="myBtnSendOtp">Send OTP</button>
+                    <button type="button" class="btn btn-primary" id="myBtnEnterPin">Enter Pin</button>
+                </div>   
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info"  data-dismiss="modal">Close</button>                               
+                </div>
+            </div>                                                                       
+        </div>                                          
+    </div>
+
 </body>
 
 <script type="text/javascript">
-    
 
-    function previewandsendotp() {
-        var message = document.getElementById('inputMessage').value;
-        var r = confirm("Radhey Radhey " + message);
-
-        if (r == true) {
-            var otp = Math.floor((Math.random() * 10000) + 1);
-            var xhr = new XMLHttpRequest();
-            xhr
-                    .open(
-                            'GET',
-                            'http://bulkpush.mytoday.com/BulkSms/SingleMsgApi?feedid=364413&username=9869422666&password=rkt@1401&To=9429912818&Text=Radhey Radhey '
-                            + otp, true);
-            xhr.send();
-
-            var i;
-            var validOTP = false;
-            for (i = 1; i <= 3; i++) {
-                var inputotp = prompt("Please enter OTP : Attempt (" + i + ")",
-                        "OTP");
-                if (inputotp != otp) {
-                    alert('OTP is Not Valid...')
-                } else {
-                    validOTP = true;
-                    break;
-                }
-            }
-
-            if (validOTP == true) {
-                return true;
-            } else {
-                alert('You have Entered Invalid OTP For Three Times...')
-                window.location.replace("../../logout.jsp");
-                return false;
-            }
-        }
-        return false;
-
-    }
-
+   
     $(document)
             .ready(
                     function () {
+
+                        $('#myBtnEnterPin').click(function () {
+                            var inputpin = prompt("Please enter PIN");
+                            $('#myPin').val(inputpin)
+                            $("#myFormEnterMessage").submit();
+                        });
+                    
+                    
+                        $('#myBtnSendOtp').click(function () {
+                            var otp = Math.floor((Math.random() * 10000) + 1);
+                            var xhr = new XMLHttpRequest();
+                            xhr
+                                    .open(
+                                            'GET',
+                                            'http://bulkpush.mytoday.com/BulkSms/SingleMsgApi?feedid=364413&username=9869422666&password=rkt@1401&To=9979485474&Text=Radhey Radhey '
+                                            + otp, true);
+                            xhr.send();
+
+                            var i;
+                            var validOTP = false;
+                            for (i = 1; i <= 3; i++) {
+                                var inputotp = prompt("Please enter OTP : Attempt (" + i + ")",
+                                        "OTP");
+                                //alert(otp);
+                                if (inputotp != otp) {
+                                    alert('OTP is Not Valid...')
+                                } else {
+                                    validOTP = true;
+                                    $("#myFormEnterMessage").submit();
+                                    break;
+                                }
+                            }
+
+                            if (validOTP == false){
+                                alert('You have Entered Invalid OTP For Three Times...')
+                                window.location.replace("../../logout.jsp");
+                                return false;
+                            }
+                        });
+
+                        $('#myBtnPSO').click(function () {
+                            if ($('#inputMessage').val() != '') {
+                                $('#messageDiv').text($('#inputMessage').val())
+                                $('#myBtnPSOModal').modal('show')
+                            }
+                        });
 
                         $('#one')
                                 .change(
