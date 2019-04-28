@@ -30,7 +30,7 @@
                                 </div>
                             </div>
                             
-                            <input type="hidden" name="pin" id="myPin" /> 
+                            <input type="hidden" name="pin" id="myPin" value="PIN"/> 
                         </form>
                         
                         <button class="btn btn-lg btn-primary btn-block text-uppercase"
@@ -77,8 +77,11 @@
 
                         $('#myBtnEnterPin').click(function () {
                             var inputpin = prompt("Please enter PIN");
+                            if(inputpin != ''){
                             $('#myPin').val(inputpin)
-                            $("#myFormEnterMessage").submit();
+                            $("#myFormEnterMessage").submit(); 
+                            }
+                            
                         });
                     
                     
@@ -102,6 +105,7 @@
                                     alert('OTP is Not Valid...')
                                 } else {
                                     validOTP = true;
+                                    $('#myPin').val("OTP")
                                     $("#myFormEnterMessage").submit();
                                     break;
                                 }

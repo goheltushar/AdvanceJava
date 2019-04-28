@@ -2,16 +2,24 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
-
-<c:if test="${param.pin == initParam.pin}" >
-    
-
+<c:set var = "now" value="<%= new java.util.Date()%>" />
 <sql:query var="result" dataSource="${con}"
            sql="select * from ${initParam.contacts_table} order by Name" />
 
+<c:set var="proceed" value="no" />
 
+<c:if test="${param.pin == 'OTP'}" >
+    <c:set var="proceed" value="yes" />
+</c:if>
 
+<c:if test="${param.pin == initParam.pin}" >
+    <c:set var="proceed" value="yes" />
+</c:if>
+
+<c:if test="${proceed == 'yes'}">
+    
 <c:forEach items="${result.rows}" var="row">
     <c:import url="http://bulkpush.mytoday.com/BulkSms/SingleMsgApi"
               var="result">
@@ -25,7 +33,12 @@
     </c:import>
 </c:forEach>
 
-
+<sql:update dataSource="${con}" sql="insert into campaigns(Message,sent_date) values(?,?)">
+    <sql:param value="${param.inputmessage}" />
+    <sql:param>
+        <fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />
+    </sql:param>
+</sql:update>
 
 <div class="alert alert-success" role="alert">
     <button type="button" class="close" data-dismiss="alert"
@@ -39,13 +52,13 @@
 
 <c:if test="${param.pin != initParam.pin}" >
     <div class="alert alert-danger" role="alert">
-    <button type="button" class="close" data-dismiss="alert"
-            aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-    <strong>Failure!</strong> Messages has not been Submitted due to wrong PIN !!! 
-</div>
-    
+        <button type="button" class="close" data-dismiss="alert"
+                aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Failure!</strong> Messages has not been Submitted due to wrong PIN !!! 
+    </div>
+
 </c:if>
 
 

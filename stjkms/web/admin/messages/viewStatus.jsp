@@ -1,4 +1,4 @@
-<%@include file="../../adminHeader.jsp" %>
+<%@include file="../adminHeader.jsp" %>
 
 <%@ page import="java.io.*,java.util.*,java.sql.*,java.net.*,java.util.zip.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -26,12 +26,13 @@
     <c:import url="http://stats.mytoday.com/dlr_api"
               var="result_dtxnid">
         <c:param name="feedid" value="364413" />
+        <c:param name="date" value="${param.sent_date}" />
     </c:import>
     <c:set var="result_dtxnid"
            value="${fn:substringAfter(result_dtxnid,'<RESULT>')}" />
     <c:set var="dtxnid"
            value="${fn:substringBefore(result_dtxnid,'</RESULT>')}" />
-
+    <c:out value="${result_dtxnid}" />
     <br>
     <%                            //out.println(request.getLo);
         String txnid = (String) pageContext.getAttribute("dtxnid");
@@ -44,6 +45,7 @@
               var="result_status">
         <c:param name="feedid" value="364413" />
         <c:param name="dtxnid" value="${dtxnid}" />
+        <c:param name="date" value="${param.sent_date}" />
     </c:import>
 
     <c:set var="result_status"
@@ -62,6 +64,7 @@
         <c:param name="feedid" value="364413" />
         <c:param name="dtxnid" value="${dtxnid}" />
         <c:param name="ack" value="1" />
+        <c:param name="date" value="${param.sent_date}" />
     </c:import>
 
 
@@ -80,9 +83,9 @@
             if (txnid.length() > 2) {
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection con = DriverManager.getConnection(
-                        "jdbc:mysql://localhost:3306/stjkms", "root",
-                        "Kripalu@1008");
-                PreparedStatement psmt = con.prepareStatement("select * from contacts where Number = ?");
+                        getServletContext().getInitParameter("url"), getServletContext().getInitParameter("user"),
+                        getServletContext().getInitParameter("password"));
+                PreparedStatement psmt = con.prepareStatement("select * from " + getServletContext().getInitParameter("contacts_table") + " where Number = ?");
                 ResultSet rs = null;
 
                 URL url = new URL("http://stats.mytoday.com/estatsbin/dlr_download?"
@@ -165,6 +168,9 @@
         <div class="row">
             <div class="card-body">
                 <div class="table-responsive">
+                    <h5 class="card-title text-center">Report For the Date : ${param.sent_date}</h5>
+                    <hr>
+                     <h5 class="text-center">Message : ${param.Message}</h5>
                     <table class="table table-bordered" id="statusTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
