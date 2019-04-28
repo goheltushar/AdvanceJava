@@ -105,7 +105,7 @@
                         <h6 class="collapse-header">Manage Messages:</h6>
                         <a class="collapse-item" href="${pageContext.request.contextPath}/admin/messages/enterMessage.jsp">Compose SMS</a>
                         <a class="collapse-item" href="${pageContext.request.contextPath}/admin/messages/deliveryReportsMain.jsp">Delivery Reports</a>
-                        <a class="collapse-item" href="utilities-animation.html">Schedule SMS</a>
+                        <a class="collapse-item" href="${pageContext.request.contextPath}/admin/messages/scheduleMessage.jsp">Schedule SMS</a>
                     </div>
                 </div>
             </li>

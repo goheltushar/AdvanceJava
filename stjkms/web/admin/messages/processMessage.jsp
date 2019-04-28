@@ -36,7 +36,7 @@
 <sql:update dataSource="${con}" sql="insert into campaigns(Message,sent_date) values(?,?)">
     <sql:param value="${param.inputmessage}" />
     <sql:param>
-        <fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />
+        <fmt:formatDate pattern="yyyy-MM-dd" value="${now}"/>
     </sql:param>
 </sql:update>
 
