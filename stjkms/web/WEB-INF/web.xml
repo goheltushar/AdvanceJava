@@ -28,7 +28,7 @@
     
     <context-param>  
         <param-name>contacts_table</param-name>
-        <param-value>contacts_test</param-value>
+        <param-value>contacts</param-value>
     </context-param>   
     
     

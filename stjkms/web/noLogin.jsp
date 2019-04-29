@@ -42,7 +42,7 @@
                                                 Seems like you have not log in, Please Login First !!!
                                             </div>
 
-                                            <a class="btn btn-lg btn-primary btn-block text-uppercase" href=<%=getServletContext().getContextPath() + "/index.html"%> role="button">Log In</a>
+                                            <a class="btn btn-lg btn-primary btn-block text-uppercase" href="${pageContext.request.contextPath}/login.jsp" role="button">Log In</a>
                                             <hr class="my-4">
                                         </div>
                                     </div>

@@ -37,9 +37,11 @@
 
 <%
     String u = (String) session.getAttribute("username");
-    if (null == u) {%>
-    <jsp:forward page="../noLogin.jsp" />
-<%}
+    String str = "/noLogin.jsp";
+    if (null == u) {
+        RequestDispatcher rd = request.getRequestDispatcher(str);
+        rd.forward(request, response);
+}
 %>
 
 <body id="page-top">
