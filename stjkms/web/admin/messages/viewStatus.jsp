@@ -32,7 +32,7 @@
            value="${fn:substringAfter(result_dtxnid,'<RESULT>')}" />
     <c:set var="dtxnid"
            value="${fn:substringBefore(result_dtxnid,'</RESULT>')}" />
-    <c:out value="${result_dtxnid}" />
+    
     <br>
     <%                            //out.println(request.getLo);
         String txnid = (String) pageContext.getAttribute("dtxnid");

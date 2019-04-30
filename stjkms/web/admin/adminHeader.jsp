@@ -37,9 +37,9 @@
 
 <%
     String u = (String) session.getAttribute("username");
-    String str = "/noLogin.jsp";
+    String strurl = "/noLogin.jsp";
     if (null == u) {
-        RequestDispatcher rd = request.getRequestDispatcher(str);
+        RequestDispatcher rd = request.getRequestDispatcher(strurl);
         rd.forward(request, response);
 }
 %>
