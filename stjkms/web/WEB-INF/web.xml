@@ -6,7 +6,7 @@
         <welcome-file>login.jsp</welcome-file>  
     </welcome-file-list>  
 
-   <context-param>  
+    <context-param>  
         <param-name>url</param-name>
         <param-value>jdbc:mysql://localhost:3306/stjkms</param-value>
     </context-param>  
@@ -28,13 +28,32 @@
     
     <context-param>  
         <param-name>contacts_table</param-name>
-        <param-value>contacts</param-value>
+        <param-value>contacts_test</param-value>
     </context-param>   
     
+    <context-param>  
+        <param-name>feedid</param-name>
+        <param-value>364413</param-value>
+    </context-param>  
+    
+    <context-param>  
+        <param-name>apiusername</param-name>
+        <param-value>9869422666</param-value>
+    </context-param>  
+    
+    <context-param>  
+        <param-name>apipassword</param-name>
+        <param-value>rkt@1401</param-value>
+    </context-param>
+    
+    <context-param>  
+        <param-name>senderid</param-name>
+        <param-value>STJKMS</param-value>
+    </context-param>   
     
     <context-param>  
         <param-name>pin</param-name>
         <param-value>1401</param-value>
     </context-param>
     
-   </web-app>
+</web-app>

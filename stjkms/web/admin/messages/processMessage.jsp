@@ -3,8 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <c:set var = "now" value="<%= new java.util.Date()%>" />
+<c:set var = "campaignid" value="<%= new java.util.Date().getTime()%>" />
+
 <sql:query var="result" dataSource="${con}"
            sql="select * from ${initParam.contacts_table} order by Name" />
 
@@ -19,34 +22,51 @@
 </c:if>
 
 <c:if test="${proceed == 'yes'}">
-    
-<c:forEach items="${result.rows}" var="row">
-    <c:import url="http://bulkpush.mytoday.com/BulkSms/SingleMsgApi"
-              var="result">
-        <c:param name="feedid" value="364413" />
-        <c:param name="senderid" value="STJKMS" />
-        <c:param name="username" value="9869422666" />
-        <c:param name="password" value="rkt@1401" />
-        <c:param name="To" value="${row.Number}" />
-        <c:param name="Text"
-                 value="Radhey Radhey ${row.Name} ${row.Adjective} ${param.inputmessage}" />
-    </c:import>
-</c:forEach>
+    <sql:update dataSource="${con}" sql="insert into campaigns(campaignid,Message,sent_date) values(?,?,?)">
+        <sql:param value="${campaignid}" />
+        <sql:param value="${param.inputmessage}" />
+        <sql:param>
+            <fmt:formatDate pattern="yyyy-MM-dd" value="${now}"/>
+        </sql:param>
+    </sql:update>
 
-<sql:update dataSource="${con}" sql="insert into campaigns(Message,sent_date) values(?,?)">
-    <sql:param value="${param.inputmessage}" />
-    <sql:param>
-        <fmt:formatDate pattern="yyyy-MM-dd" value="${now}"/>
-    </sql:param>
-</sql:update>
+    <c:set var="after" value="='" />
+    <c:set var="before" value="'>" />
 
-<div class="alert alert-success" role="alert">
-    <button type="button" class="close" data-dismiss="alert"
-            aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-    <strong>Success!</strong> Messages has been Submitted Successfully !!! 
-</div>
+    <c:forEach items="${result.rows}" var="row">
+        <c:import url="http://bulkpush.mytoday.com/BulkSms/SingleMsgApi"
+                  var="result">
+            <c:param name="feedid" value="${initParam.feedid}" />
+            <c:param name="senderid" value="${initParam.senderid}" />
+            <c:param name="username" value="${initParam.apiusername}" />
+            <c:param name="password" value="${initParam.apipassword}" />
+            <c:param name="To" value="${row.Number}" />
+            <c:param name="Text"
+                     value="Radhey Radhey ${row.Name} ${row.Adjective} ${param.inputmessage}" />
+        </c:import>
+
+        <c:set var="result"
+               value="${fn:substringAfter(result,after)}" />
+        <c:set var="result"
+               value="${fn:substringBefore(result,before)}" />
+
+        <sql:update dataSource="${con}" sql="insert into campaigns_status(campaignid,requestid) values(?,?)" >
+            <sql:param value="${campaignid}" />
+            <sql:param value="${result}" />
+        </sql:update>
+
+
+    </c:forEach>
+
+
+
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="close" data-dismiss="alert"
+                aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Success!</strong> Messages has been Submitted Successfully !!! 
+    </div>
 
 </c:if>
 
