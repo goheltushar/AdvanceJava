@@ -25,14 +25,14 @@
 
     <c:import url="http://stats.mytoday.com/dlr_api"
               var="result_dtxnid">
-        <c:param name="feedid" value="364413" />
+        <c:param name="feedid" value="${initParam.feedid}" />
         <c:param name="date" value="${param.sent_date}" />
     </c:import>
     <c:set var="result_dtxnid"
            value="${fn:substringAfter(result_dtxnid,'<RESULT>')}" />
     <c:set var="dtxnid"
            value="${fn:substringBefore(result_dtxnid,'</RESULT>')}" />
-    
+
     <br>
     <%                            //out.println(request.getLo);
         String txnid = (String) pageContext.getAttribute("dtxnid");
@@ -43,7 +43,7 @@
     %>
     <c:import url="http://stats.mytoday.com/dlr_api"
               var="result_status">
-        <c:param name="feedid" value="364413" />
+        <c:param name="feedid" value="${initParam.feedid}" />
         <c:param name="dtxnid" value="${dtxnid}" />
         <c:param name="date" value="${param.sent_date}" />
     </c:import>
@@ -61,7 +61,7 @@
         if (report_status.equals("DONE")) {
     %>
     <c:import url="http://stats.mytoday.com/dlr_api" var="result_file">
-        <c:param name="feedid" value="364413" />
+        <c:param name="feedid" value="${initParam.feedid}" />
         <c:param name="dtxnid" value="${dtxnid}" />
         <c:param name="ack" value="1" />
         <c:param name="date" value="${param.sent_date}" />
@@ -85,6 +85,16 @@
                 Connection con = DriverManager.getConnection(
                         getServletContext().getInitParameter("url"), getServletContext().getInitParameter("user"),
                         getServletContext().getInitParameter("password"));
+
+                PreparedStatement campaignstmt = con.prepareStatement("select * from campaigns_status where campaignid = ?");
+                campaignstmt.setLong(1, Long.parseLong(request.getParameter("campaignid")));
+                ResultSet rs1 = campaignstmt.executeQuery();
+                ArrayList campaignrequestids = new ArrayList();
+                while (rs1.next()) {
+                    campaignrequestids.add(rs1.getLong("requestid"));
+                }
+                rs1.close();
+
                 PreparedStatement psmt = con.prepareStatement("select * from " + getServletContext().getInitParameter("contacts_table") + " where Number = ?");
                 ResultSet rs = null;
 
@@ -92,7 +102,7 @@
                         + (String) pageContext.getAttribute("file") + "&feedid=364413");
                 InputStream in = new BufferedInputStream(url.openStream(), 1024);
                 // make sure we get the actual file
-                                    
+
                 File targetDir = new File(getServletContext().getInitParameter("targetDir"));
                 File zip = File.createTempFile("arc", ".zip", targetDir);
                 OutputStream fout = new BufferedOutputStream(new FileOutputStream(zip));
@@ -119,6 +129,7 @@
                     StringTokenizer st = null;
                     StringBuffer sb = null;
                     String token = "";
+                    
 
                     ArrayList delivery_status = new ArrayList();
                     ArrayList delivery_status_element = null;
@@ -127,11 +138,13 @@
                         if (i++ == 1) {
                             continue;
                         }
+                        //out.println(str);
                         /*if (str.contains("Delivered")) {
                             continue;
                         }*/
                         st = new StringTokenizer(str, ",");
                         j = 0;
+                        
                         delivery_status_element = new ArrayList();
                         while (st.hasMoreTokens()) {
                             j++;
@@ -153,16 +166,24 @@
                                     delivery_status_element.add(token);
                                 }
                             }
+
+                            if (j == 7) {
+                                token = token.substring(token.indexOf('"') + 1, token.lastIndexOf('"'));
+                                if (campaignrequestids.contains(Long.parseLong(token))) {
+                                    delivery_status.add(delivery_status_element);
+                                }
+                            }
                         }
-                        delivery_status.add(delivery_status_element);
+                        
+                       
                         count++;
                         //out.print("<br> <br>");
                     }
                     br.close();
-                                        
+
     %>
 
-   
+
 
     <div class="container">
         <div class="row">
@@ -170,7 +191,7 @@
                 <div class="table-responsive">
                     <h5 class="card-title text-center">Report For the Date : ${param.sent_date}</h5>
                     <hr>
-                     <h5 class="text-center">Message : ${param.Message}</h5>
+                    <h5 class="text-center">Message : ${param.Message}</h5>
                     <table class="table table-bordered" id="statusTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
@@ -183,16 +204,16 @@
                         <tbody>
 
                             <% ArrayList temp = new ArrayList();
-                     for (int k = 0; k < delivery_status.size(); k++) {
-                         temp = (ArrayList) delivery_status.get(k);
-                         out.print("<tr>");
-                         out.print("<th scope=\"row\">" + k + "</th>");
-                         out.print("<td>" + temp.get(1) + "</td>");
-                         out.print("<td>" + temp.get(2)  + "</td>");
-                         out.print("</tr>");
-                         }%>
+                                for (int k = 0; k < delivery_status.size(); k++) {
+                                    temp = (ArrayList) delivery_status.get(k);
+                                    out.print("<tr>");
+                                    out.print("<th scope=\"row\">" + k + "</th>");
+                                    out.print("<td>" + temp.get(1) + "</td>");
+                                    out.print("<td>" + temp.get(2) + "</td>");
+                                    out.print("</tr>");
+                                }%>
 
-                            
+
 
                         </tbody>
                     </table>
@@ -212,18 +233,18 @@
 
     <script>
         $(document).ready(function () {
-            $('#statusTable').DataTable();
+        $('#statusTable').DataTable();
         });
     </script>
 
     <% }
- } else {
-     out.println(txnid);
- }
+            } else {
+                out.println(txnid);
+            }
 
-} catch (Exception e) {
- out.println(e.toString());
-}
+        } catch (Exception e) {
+            out.println(e.toString());
+        }
     %>
 
 

@@ -6,7 +6,7 @@
 <sql:query var="result" dataSource="${con}"
            sql="select * from campaigns order by sent_date" />
 
-<c:set var="i" value="1" />
+<c:set var="i" value="1"/>
 
 <div class="container">
     <div class="row">
@@ -17,6 +17,7 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Sent Date</th>
+                            <th scope="col">Campaign ID</th>
                             <th scope="col">Message</th>
                             <th scope="col"></th>
                         </tr>
@@ -29,9 +30,10 @@
                             <tr>
                                 <th scope="row">${i}</th>
                                 <td>${row.sent_date}</td>
+                                <td>${row.campaignid}</td>
                                 <td>${row.Message}</td>
                                 <td>
-                                    <a href="viewStatus.jsp?sent_date=${row.sent_date}&Message=${row.Message}">Check Report</a>
+                                    <a href="viewStatus.jsp?sent_date=${row.sent_date}&Message=${row.Message}&campaignid=${row.campaignid}">Check Report</a>
                                     
                                 </td>
                             </tr>
