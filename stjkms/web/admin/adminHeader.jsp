@@ -28,11 +28,11 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
-
+   
     <!-- Core plugin JavaScript-->
     <script src="${pageContext.request.contextPath}/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-
+    
 </head>
 
 <%
@@ -41,7 +41,7 @@
     if (null == u) {
         RequestDispatcher rd = request.getRequestDispatcher(strurl);
         rd.forward(request, response);
-}
+    }
 %>
 
 <body id="page-top">
@@ -156,9 +156,9 @@
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#changeContactsTableModal">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Transactions
+                                    Change Contacts Table
                                 </a>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#changePasswordModal">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -182,3 +182,5 @@
                 <%@include file="../mymodals/changepassword.html" %>
 
                 <%@include file="../mymodals/profile.html" %>
+
+                <%@include file="../mymodals/changeContactsTable.html" %>

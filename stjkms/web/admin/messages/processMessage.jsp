@@ -9,7 +9,7 @@
 <c:set var = "campaignid" value="<%= new java.util.Date().getTime()%>" />
 
 <sql:query var="result" dataSource="${con}"
-           sql="select * from ${initParam.contacts_table} order by Name" />
+           sql="select * from ${contacts_table} order by Name" />
 
 <c:set var="proceed" value="no" />
 
@@ -70,13 +70,13 @@
 
 </c:if>
 
-<c:if test="${param.pin != initParam.pin}" >
+<c:if test="${proceed == 'no'}">
     <div class="alert alert-danger" role="alert">
         <button type="button" class="close" data-dismiss="alert"
                 aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
-        <strong>Failure!</strong> Messages has not been Submitted due to wrong PIN !!! 
+        <strong>Failure!</strong> Messages has not been Submitted!!! 
     </div>
 
 </c:if>

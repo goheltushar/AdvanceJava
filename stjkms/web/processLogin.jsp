@@ -17,6 +17,7 @@
 
         <c:set var="uname" value="${param.username}" />
         <c:set var="pwd" value="${param.password}" />
+        <c:set var="contacts_table" value="${initParam.contacts_table}" scope="session" />
 
         <sql:query dataSource="${con}" sql="select * from users where username = ? and password = ?" var="result">
             <sql:param value="${uname}" />

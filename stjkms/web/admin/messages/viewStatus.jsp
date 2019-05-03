@@ -95,7 +95,7 @@
                 }
                 rs1.close();
 
-                PreparedStatement psmt = con.prepareStatement("select * from " + getServletContext().getInitParameter("contacts_table") + " where Number = ?");
+                PreparedStatement psmt = con.prepareStatement("select * from " + session.getAttribute("contacts_table") + " where Number = ?");
                 ResultSet rs = null;
 
                 URL url = new URL("http://stats.mytoday.com/estatsbin/dlr_download?"

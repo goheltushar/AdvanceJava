@@ -1,0 +1,29 @@
+<!-- Logout Modal-->
+<div class="modal fade" id="changeContactsTableModal" tabindex="-1" role="dialog" aria-labelledby="changeContactsTableModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="changeContactsTableModalLabel">Current Contacts Table</h5>
+
+            </div>
+            <div class="modal-body">
+                Currently : ${contacts_table}
+                <hr>
+                
+                <form action="${pageContext.request.contextPath}/admin/contacts/processChangeContactsTable.jsp" name="changeContactaTable">
+                    <div class="radio">
+                        <label><input type="radio" name="table" value="contacts" checked >Main Table</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="table" value="contacts_test" >Test Table</label>
+                    </div>
+                    <input type="Submit" value="Submit" />
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
