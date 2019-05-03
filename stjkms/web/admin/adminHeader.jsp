@@ -28,11 +28,11 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
-   
+
     <!-- Core plugin JavaScript-->
     <script src="${pageContext.request.contextPath}/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="${pageContext.request.contextPath}/admin/js/sb-admin-2.min.js"></script>
 
-    
 </head>
 
 <%
@@ -87,11 +87,11 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Manage PhoneBook</h6>
-                        <a class="collapse-item" href="buttons.html">Add Group</a>
+                        <a class="collapse-item" href="${pageContext.request.contextPath}/admin/contacts/addGroup.jsp">Add Group</a>
                         <a class="collapse-item" href="${pageContext.request.contextPath}/admin/contacts/insertContact.jsp">Add Contact</a>
                         <a class="collapse-item" href="buttons.html">Import Contact</a>
-                        <a class="collapse-item" href="buttons.html">Manage Group</a>
-                        <a class="collapse-item" href="${pageContext.request.contextPath}/admin/contacts/viewContacts.jsp">View Contacts</a>
+                        <a class="collapse-item" href="${pageContext.request.contextPath}/admin/contacts/manageGroups.jsp">Manage Group</a>
+                        <a class="collapse-item" href="${pageContext.request.contextPath}/mymodals/viewContactsModal.jsp">View Contacts</a>
                     </div>
                 </div>
             </li>
@@ -113,12 +113,21 @@
             </li>
 
 
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
 
 
 
         </ul>
         <!-- End of Sidebar -->
 
+        
+        
+        
+        
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 

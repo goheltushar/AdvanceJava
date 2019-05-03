@@ -8,7 +8,9 @@
 
 <c:set var = "now" value="<%= new java.util.Date()%>" />
 <sql:query var="result" dataSource="${con}"
-           sql="select * from ${contacts_table} order by Name" />
+           sql="select * from ${contacts_table} where group_id = ? order by Name" >
+    <sql:param  value="${param.group}" />
+</sql:query>
 
 <c:set var="proceed" value="no" />
 <c:set value="${fn:substring(param.time,0,4)}" var="yyyy" />

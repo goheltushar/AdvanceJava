@@ -9,7 +9,9 @@
 <c:set var = "campaignid" value="<%= new java.util.Date().getTime()%>" />
 
 <sql:query var="result" dataSource="${con}"
-           sql="select * from ${contacts_table} order by Name" />
+           sql="select * from ${contacts_table} where group_id = ? order by Name" >
+    <sql:param  value="${param.group}" />
+</sql:query>
 
 <c:set var="proceed" value="no" />
 
@@ -22,12 +24,13 @@
 </c:if>
 
 <c:if test="${proceed == 'yes'}">
-    <sql:update dataSource="${con}" sql="insert into campaigns(campaignid,Message,sent_date) values(?,?,?)">
+    <sql:update dataSource="${con}" sql="insert into campaigns(campaignid,Message,sent_date,group_id) values(?,?,?,?)">
         <sql:param value="${campaignid}" />
         <sql:param value="${param.inputmessage}" />
         <sql:param>
             <fmt:formatDate pattern="yyyy-MM-dd" value="${now}"/>
         </sql:param>
+        <sql:param  value="${param.group}" />
     </sql:update>
 
     <c:set var="after" value="='" />

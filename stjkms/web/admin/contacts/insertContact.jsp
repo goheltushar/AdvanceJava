@@ -1,6 +1,6 @@
 <%@include file="../adminHeader.jsp" %>
-
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <body>
     <div class="container">
@@ -34,14 +34,27 @@
                             <div class="form-label-group">
                                 <input type="number" name="number" id="inputNumber"
                                        class="form-control" placeholder="Mobile" required> <label
-                                       for="inputPassword">Mobile :</label>
+                                       for="inputNumber">Mobile :</label>
+                            </div>
+
+                            <sql:query var="result" dataSource="${con}" sql="select * from groups" />
+
+                            <div class="form-label-group">
+
+                                <select class="browser-default custom-select" name="group">
+                                    <option selected value="0">Select Group</option>
+                                    <c:forEach items="${result.rows}" var="row">
+                                    <option value="${row.group_id}">${row.group_name}</option>
+                                    </c:forEach>
+                                    
+                                </select>
                             </div>
 
                             <button class="btn btn-lg btn-primary btn-block text-uppercase"
                                     type="submit">Insert Contact</button>
                             <hr class="my-4">
 
-                            
+
 
                         </form>
                     </div>

@@ -16,6 +16,7 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
+                            <th scope="col">Group ID</th>
                             <th scope="col">Sent Date</th>
                             <th scope="col">Campaign ID</th>
                             <th scope="col">Message</th>
@@ -29,6 +30,7 @@
 
                             <tr>
                                 <th scope="row">${i}</th>
+                                <td>${row.group_id}</td>
                                 <td>${row.sent_date}</td>
                                 <td>${row.campaignid}</td>
                                 <td>${row.Message}</td>

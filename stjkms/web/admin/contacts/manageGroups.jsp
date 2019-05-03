@@ -6,25 +6,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
 <sql:query var="result" dataSource="${con}"
-           sql="select * from ${contacts_table} where group_id = ? order by Name" >
-    <sql:param value="${param.group}" />
-</sql:query>
+           sql="select * from groups" />
 
-<c:set var="i" value="1" />
 
 <div class="container">
     <div class="row">
-        Group ID : ${param.group}
-    </div>
-    <div class="row">
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="contactsTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="groupsTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col">Group ID</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Mobile</th>
+                            <th scope="col">Remarks</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
@@ -34,16 +28,14 @@
                         <c:forEach items="${result.rows}" var="row">
 
                             <tr>
-                                <th scope="row">${i}</th>
-                                <td>${row.Name} ${row.Surname}</td>
-                                <td>${row.Number}</td>
+                                <th scope="row">${row.group_id}</th>
+                                <td>${row.group_name}</td>
+                                <td>${row.remarks}</td>
                                 <td>
-                                    <a href="editContact.jsp?name=${row.Name}&adjective=${row.Adjective}&surname=${row.Surname}&number=${row.Number}&id=${row.id}" class="badge badge-primary">Edit</a>
-                                    &nbsp;
-                                    <a href="deleteContact.jsp?id=${row.id}" onclick="return confirm('Are You Sure to delete this record?')" class="badge badge-danger">Delete</a>
+                                    <a href="deleteGroup.jsp?group_id=${row.group_id}" onclick="return confirm('Are You Sure to delete this record?')" class="badge badge-danger">Delete</a>
                                 </td>
                             </tr>
-                            <c:set var="i" value="${i + 1 }" />
+                           
                         </c:forEach>
 
                     </tbody>
@@ -64,7 +56,7 @@
 
 <script>
     $(document).ready(function () {
-    $('#contactsTable').DataTable();
+    $('#groupsTable').DataTable();
     });
 </script>
 
