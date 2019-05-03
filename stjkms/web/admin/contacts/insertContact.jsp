@@ -37,18 +37,8 @@
                                        for="inputNumber">Mobile :</label>
                             </div>
 
-                            <sql:query var="result" dataSource="${con}" sql="select * from groups" />
-
-                            <div class="form-label-group">
-
-                                <select class="browser-default custom-select" name="group">
-                                    <option selected value="0">Select Group</option>
-                                    <c:forEach items="${result.rows}" var="row">
-                                    <option value="${row.group_id}">${row.group_name}</option>
-                                    </c:forEach>
-                                    
-                                </select>
-                            </div>
+                           
+                            
 
                             <button class="btn btn-lg btn-primary btn-block text-uppercase"
                                     type="submit">Insert Contact</button>

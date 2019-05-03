@@ -4,12 +4,12 @@
 	
 <c:catch var="catchException">
 	<sql:update dataSource="${con}"
-		sql="update ${contacts_table} set Name = ?,Adjective = ?, Surname = ?, Number = ?, group_id = ? where id = ?">
+		sql="update ${contacts_table} set Name = ?,Adjective = ?, Surname = ?, Number = ? where id = ?">
 		<sql:param value="${param.name}" />
 		<sql:param value="${param.adjective}" />
 		<sql:param value="${param.surname}" />
 		<sql:param value="${param.number}" />
-                <sql:param value="${param.group}" />
+              
 		<sql:param value="${param.id}" />
 	</sql:update>
 </c:catch>

@@ -91,7 +91,7 @@
                         <a class="collapse-item" href="${pageContext.request.contextPath}/admin/contacts/insertContact.jsp">Add Contact</a>
                         <a class="collapse-item" href="buttons.html">Import Contact</a>
                         <a class="collapse-item" href="${pageContext.request.contextPath}/admin/contacts/manageGroups.jsp">Manage Group</a>
-                        <a class="collapse-item" href="${pageContext.request.contextPath}/mymodals/viewContactsModal.jsp">View Contacts</a>
+                        <a class="collapse-item" href="${pageContext.request.contextPath}/admin/contacts/viewContacts.jsp">View Contacts</a>
                     </div>
                 </div>
             </li>
