@@ -29,7 +29,7 @@
 
                     
                     Select a CSV file: <br /><br/ >
-                    <form action="action_file_upload.jsp" method="post"
+                        <form action="processImportContactsFromFile.jsp" method="post"
                           enctype="multipart/form-data">
                         <input type="file" name="file" size="50" required/>
                         <br />
