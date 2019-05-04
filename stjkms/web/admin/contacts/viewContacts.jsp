@@ -27,6 +27,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Mobile</th>
+                                <th scope="col">Group(s)</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -42,6 +43,15 @@
                                     <th scope="row">${i}</th>
                                     <td>${row.Name} ${row.Surname}</td>
                                     <td>${row.Number}</td>
+                                    <td>
+                                        <sql:query var="res" dataSource="${con}"
+                                                   sql="select * from ${contacts_table} as c,groups_contacts as gc,groups g where c.id=gc.contacts_id and g.group_id = gc.group_id and c.id = ?">
+                                            <sql:param value="${row.id}" />
+                                        </sql:query>
+                                        <c:forEach items="${res.rows}" var="resrow">
+                                            ${resrow.group_name} &nbsp;
+                                        </c:forEach>
+                                    </td>
                                     <td>
                                         <a href="editContact.jsp?name=${row.Name}&adjective=${row.Adjective}&surname=${row.Surname}&number=${row.Number}&id=${row.id}" class="badge badge-primary">Edit</a>
                                         &nbsp;

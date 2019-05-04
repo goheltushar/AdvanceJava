@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
+<%@include file="../adminHeader.jsp" %>
 
 <%@ page import="java.io.*,java.util.*, javax.servlet.*,java.sql.*" %>
 <%@ page import="javax.servlet.http.*" %>
