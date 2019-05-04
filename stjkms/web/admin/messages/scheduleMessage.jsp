@@ -17,7 +17,7 @@
 
                             <div class="form-label-group">
 
-                                <select class="browser-default custom-select" name="group">
+                                <select class="browser-default custom-select" name="group_id">
                                     <option selected value="0">Select Group</option>
                                     <c:forEach items="${result.rows}" var="row">
                                         <option value="${row.group_id}">${row.group_name}</option>

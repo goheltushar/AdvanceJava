@@ -9,8 +9,8 @@
 <c:set var = "campaignid" value="<%= new java.util.Date().getTime()%>" />
 
 <sql:query var="result" dataSource="${con}"
-           sql="select * from ${contacts_table} where group_id = ? order by Name" >
-    <sql:param  value="${param.group}" />
+           sql="select * from ${contacts_table} as c,groups_contacts as g where c.id=g.contacts_id and g.group_id = ?">
+    <sql:param value="${param.group_id}" />
 </sql:query>
 
 <c:set var="proceed" value="no" />
@@ -30,7 +30,7 @@
         <sql:param>
             <fmt:formatDate pattern="yyyy-MM-dd" value="${now}"/>
         </sql:param>
-        <sql:param  value="${param.group}" />
+        <sql:param  value="${param.group_id}" />
     </sql:update>
 
     <c:set var="after" value="='" />

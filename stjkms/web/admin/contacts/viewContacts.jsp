@@ -38,7 +38,7 @@
 
                             <c:forEach items="${result.rows}" var="row">
                                 <tr>
-                                    <td><input type="checkbox" name="contact" value="${row.id}"></td>
+                                    <td><input type="checkbox" id="contact" name="contact" value="${row.id}"></td>
                                     <th scope="row">${i}</th>
                                     <td>${row.Name} ${row.Surname}</td>
                                     <td>${row.Number}</td>
@@ -50,7 +50,7 @@
                                 </tr>
                                 <c:set var="i" value="${i + 1 }" />
                             </c:forEach>
-                       
+
 
                         </tbody>
                     </table>
@@ -91,15 +91,16 @@
     $(document).ready(function () {
     $('#contactsTable').DataTable();
 
-    $('#checkboxSelectAll').click(function() {
-    //alert('Hello');
+    $("#checkboxSelectAll").click(function(){
+    $('input:checkbox').not(this).prop('checked', this.checked);
     });
 
     $("select.groups").change(function(){
-    //var selectedGroup = $(this).children("option:selected").val();
-    //$('#group_id').val(selectedGroup);
-    //alert($('#group_id').val());
+
+    var r = confirm("Are you Sure to Add these contacts to the group?");
+    if (r == true) {
     $("#addContactsToGroup").submit(); 
+    } 
     });
 
     });

@@ -89,7 +89,7 @@
                         <h6 class="collapse-header">Manage PhoneBook</h6>
                         <a class="collapse-item" href="${pageContext.request.contextPath}/admin/contacts/addGroup.jsp">Add Group</a>
                         <a class="collapse-item" href="${pageContext.request.contextPath}/admin/contacts/insertContact.jsp">Add Contact</a>
-                        <a class="collapse-item" href="buttons.html">Import Contact</a>
+                        <a class="collapse-item" href="${pageContext.request.contextPath}/admin/contacts/importContactsFromFile.jsp">Import Contact</a>
                         <a class="collapse-item" href="${pageContext.request.contextPath}/admin/contacts/manageGroups.jsp">Manage Group</a>
                         <a class="collapse-item" href="${pageContext.request.contextPath}/admin/contacts/viewContacts.jsp">View Contacts</a>
                     </div>
@@ -165,10 +165,6 @@
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#changeContactsTableModal">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Change Contacts Table
-                                </a>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#changePasswordModal">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Update Password
@@ -192,4 +188,4 @@
 
                 <%@include file="../mymodals/profile.html" %>
 
-                <%@include file="../mymodals/changeContactsTable.html" %>
+              

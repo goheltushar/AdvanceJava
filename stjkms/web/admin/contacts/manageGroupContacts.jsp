@@ -40,7 +40,7 @@
                                 <td>${row.Name} ${row.Surname}</td>
                                 <td>${row.Number}</td>
                                 <td>
-                                    <a href="removeFromGroup.jsp?id=${row.id}" onclick="return confirm('Are You Sure to delete this record?')" class="badge badge-danger">Remove</a>
+                                    <a href="removeFromGroup.jsp?contacts_id=${row.contacts_id}&group_id=${param.group_id}&group_name=${param.group_name}" onclick="return confirm('Are You Sure to remove this contact from group?')" class="badge badge-danger">Remove</a>
                                 </td>
                             </tr>
                             <c:set var="i" value="${i + 1 }" />

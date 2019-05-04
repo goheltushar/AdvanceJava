@@ -8,8 +8,8 @@
 
 <c:set var = "now" value="<%= new java.util.Date()%>" />
 <sql:query var="result" dataSource="${con}"
-           sql="select * from ${contacts_table} where group_id = ? order by Name" >
-    <sql:param  value="${param.group}" />
+           sql="select * from ${contacts_table} as c,groups_contacts as g where c.id=g.contacts_id and g.group_id = ?">
+    <sql:param value="${param.group_id}" />
 </sql:query>
 
 <c:set var="proceed" value="no" />
@@ -60,13 +60,13 @@
 
 </c:if>
 
-<c:if test="${param.pin != initParam.pin}" >
+<c:if test="${proceed == 'no'}" >
     <div class="alert alert-danger" role="alert">
         <button type="button" class="close" data-dismiss="alert"
                 aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
-        <strong>Failure!</strong> Messages has not been Submitted due to wrong PIN !!! 
+        <strong>Failure!</strong> Messages has not been Submitted !!! 
     </div>
 
 </c:if>
