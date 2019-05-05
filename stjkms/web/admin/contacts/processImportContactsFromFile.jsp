@@ -18,14 +18,18 @@
             File file;
             int maxFileSize = 5000 * 1024;
             int maxMemSize = 5000 * 1024;
-            String filePath = "/home/tushar/test/";
+            String filePath = "";
+            if(request.getRequestURL().toString().contains("localhost"))
+                filePath = "/home/tushar/test/";
+            else
+                filePath = "/tmp/stjkms-reports/";
 
             String contentType = request.getContentType();
             if ((contentType.indexOf("multipart/form-data") >= 0)) {
 
                 DiskFileItemFactory factory = new DiskFileItemFactory();
                 factory.setSizeThreshold(maxMemSize);
-                factory.setRepository(new File("/home/tushar/test/temp/"));
+                factory.setRepository(new File(filePath));
                 ServletFileUpload upload = new ServletFileUpload(factory);
                 upload.setSizeMax(maxFileSize);
                 try {
