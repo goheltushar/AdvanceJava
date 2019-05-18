@@ -41,7 +41,15 @@
                             <c:set var="password" value="${newpwd}" scope="session" />
                             Password Changed Successfully ....
                         </c:if>
+
+                        <c:if test="${newpwd == confirmpwd}">
+                            New Password and Confirmed Password Does not match...
+                        </c:if>
                     </c:if>
+                    <c:if test="${currentpwd == password}">
+
+                    </c:if>
+
                 </h2>
                 <br>
 
