@@ -28,18 +28,22 @@
         <c:param name="feedid" value="${initParam.feedid}" />
         <c:param name="date" value="${param.sent_date}" />
     </c:import>
+    <c:out value="${result_dtxnid}" />
+    
     <c:set var="result_dtxnid"
            value="${fn:substringAfter(result_dtxnid,'<RESULT>')}" />
     <c:set var="dtxnid"
-           value="${fn:substringBefore(result_dtxnid,'</RESULT>')}" />
+           value="${fn:substringBefore(result_dtxnid,'</RESULT>')}" scope="session"/>
+
 
     <br>
     <%                            //out.println(request.getLo);
         String txnid = (String) pageContext.getAttribute("dtxnid");
         int count = 1;
-        if (txnid.length() > 2) {
-            String report_status = "FETCHING";
-            while (report_status.equals("FETCHING")) {
+        if (txnid.length() > 2) { 
+    
+        String report_status = "FETCHING";
+        while (report_status.equals("FETCHING")) {
     %>
     <c:import url="http://stats.mytoday.com/dlr_api"
               var="result_status">
@@ -74,8 +78,8 @@
 
     <br>
     <%
-            }
         }
+}
     %>
 
     <%
@@ -129,7 +133,6 @@
                     StringTokenizer st = null;
                     StringBuffer sb = null;
                     String token = "";
-                    
 
                     ArrayList delivery_status = new ArrayList();
                     ArrayList delivery_status_element = null;
@@ -144,7 +147,7 @@
                         }*/
                         st = new StringTokenizer(str, ",");
                         j = 0;
-                        
+
                         delivery_status_element = new ArrayList();
                         while (st.hasMoreTokens()) {
                             j++;
@@ -174,8 +177,7 @@
                                 }
                             }
                         }
-                        
-                       
+
                         count++;
                         //out.print("<br> <br>");
                     }

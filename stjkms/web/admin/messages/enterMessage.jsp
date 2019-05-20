@@ -26,20 +26,32 @@
 
                                 </select>
                             </div>
-                                    <br>
+                            <br>
 
                             <div class="form-label-group">
                                 <textarea name="inputmessage" id="inputMessage"
                                           class="form-control" required rows="5" autofocus="autofocus"></textarea>
                             </div>
 
-                            <div class="form-label-group">
+                            <div class="form-label-group"  border="1">
                                 <div class="multiselect">
 
                                     <div id="checkboxes">
                                         <label for="one"> <input type="checkbox" id="one" />Thursday
                                         </label> <label for="two"> <input type="checkbox" id="two" />Sunday
                                         </label> <label for="three"> <input type="checkbox" id="three" />Ekadashi
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-label-group" >
+                                <div class="multiselect">
+
+                                    <div id="radioboxes">
+                                        <label for="anonymous"> <input type="radio" id="anonymous" name="anonymous" value="anonymous"/>Anonymous
+                                        </label> <label for="withnames"> <input type="radio" id="withnames" name="anonymous" value="withnames"/>With Names
+                                        </label> 
                                         </label>
                                     </div>
                                 </div>

@@ -35,7 +35,7 @@
                                 <td>${row.campaignid}</td>
                                 <td>${row.Message}</td>
                                 <td>
-                                    <a href="viewStatus.jsp?sent_date=${row.sent_date}&Message=${row.Message}&campaignid=${row.campaignid}" class="badge badge-primary">Report</a>
+                                    <a href="viewStatus_1.jsp?sent_date=${row.sent_date}&Message=${row.Message}&campaignid=${row.campaignid}" class="badge badge-primary">Report</a>
                                     &nbsp;
                                     <a href="deleteCampaigns.jsp?campaignid=${row.campaignid}" onclick="return confirm('Are You Sure to delete this campaign?')" class="badge badge-danger">Delete</a>
                                 </td>

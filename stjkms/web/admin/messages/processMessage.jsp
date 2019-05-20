@@ -36,30 +36,59 @@
     <c:set var="after" value="='" />
     <c:set var="before" value="'>" />
 
-    <c:forEach items="${result.rows}" var="row">
-        <c:import url="http://bulkpush.mytoday.com/BulkSms/SingleMsgApi"
-                  var="result">
-            <c:param name="feedid" value="${initParam.feedid}" />
-            <c:param name="senderid" value="${initParam.senderid}" />
-            <c:param name="username" value="${initParam.apiusername}" />
-            <c:param name="password" value="${initParam.apipassword}" />
-            <c:param name="To" value="${row.Number}" />
-            <c:param name="Text"
-                     value="Radhey Radhey ${row.Name} ${row.Adjective} ${param.inputmessage}" />
-        </c:import>
+    <c:if test="${param.anonymous == 'anonymous'}">
+        <c:forEach items="${result.rows}" var="row">
+            <c:import url="http://bulkpush.mytoday.com/BulkSms/SingleMsgApi"
+                      var="result">
+                <c:param name="feedid" value="${initParam.feedid}" />
+                <c:param name="senderid" value="${initParam.senderid}" />
+                <c:param name="username" value="${initParam.apiusername}" />
+                <c:param name="password" value="${initParam.apipassword}" />
+                <c:param name="To" value="${row.Number}" />
+                <c:param name="Text"
+                         value="Radhey Radhey ${param.inputmessage}" />
+            </c:import>
 
-        <c:set var="result"
-               value="${fn:substringAfter(result,after)}" />
-        <c:set var="result"
-               value="${fn:substringBefore(result,before)}" />
+            <c:set var="result"
+                   value="${fn:substringAfter(result,after)}" />
+            <c:set var="result"
+                   value="${fn:substringBefore(result,before)}" />
 
-        <sql:update dataSource="${con}" sql="insert into campaigns_status(campaignid,requestid) values(?,?)" >
-            <sql:param value="${campaignid}" />
-            <sql:param value="${result}" />
-        </sql:update>
+            <sql:update dataSource="${con}" sql="insert into campaigns_status(campaignid,requestid) values(?,?)" >
+                <sql:param value="${campaignid}" />
+                <sql:param value="${result}" />
+            </sql:update>
 
 
-    </c:forEach>
+        </c:forEach>
+    </c:if>
+
+    <c:if test="${param.anonymous == 'withnames'}">
+        <c:forEach items="${result.rows}" var="row">
+            <c:import url="http://bulkpush.mytoday.com/BulkSms/SingleMsgApi"
+                      var="result">
+                <c:param name="feedid" value="${initParam.feedid}" />
+                <c:param name="senderid" value="${initParam.senderid}" />
+                <c:param name="username" value="${initParam.apiusername}" />
+                <c:param name="password" value="${initParam.apipassword}" />
+                <c:param name="To" value="${row.Number}" />
+                <c:param name="Text"
+                         value="Radhey Radhey ${row.Name} ${row.Adjective} ${param.inputmessage}" />
+            </c:import>
+
+            <c:set var="result"
+                   value="${fn:substringAfter(result,after)}" />
+            <c:set var="result"
+                   value="${fn:substringBefore(result,before)}" />
+
+            <sql:update dataSource="${con}" sql="insert into campaigns_status(campaignid,requestid) values(?,?)" >
+                <sql:param value="${campaignid}" />
+                <sql:param value="${result}" />
+            </sql:update>
+
+
+        </c:forEach>
+    </c:if>
 
 
 
