@@ -5,3 +5,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
+<jsp:useBean class="mybeans.ShowStatus" id="showstatus" scope="page" />
+
