@@ -27,10 +27,10 @@
                 <h3>
 
 
-                    
+
                     Select a CSV file: <br /><br/ >
                         <form action="processImportContactsFromFile.jsp" method="post"
-                          enctype="multipart/form-data">
+                        enctype="multipart/form-data">
                         <input type="file" name="file" size="50" required/>
                         <br />
                         <br />
@@ -39,6 +39,10 @@
                 </h3>
                 <br>
 
+                <div class="alert alert-info alert-dismissible fade show">
+                    <strong>Info!</strong> There Should be Only 5 Columns in the csv file containing following (Name, Adjective, Surname, Number and Group_id).
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                </div>
 
             </div>
             <div class="modal-footer">
