@@ -13,13 +13,13 @@
         <c:param name="feedid" value="${initParam.feedid}" />
         <c:param name="date" value="${param.sent_date}" />
     </c:import>
-    <c:out value="${result_dtxnid}" />
+    
     <c:set var="result_dtxnid"
            value="${fn:substringAfter(result_dtxnid,'<RESULT>')}" />
     <c:set var="dtxnid"
            value="${fn:substringBefore(result_dtxnid,'</RESULT>')}" scope="session"/>
 
-    <c:out value="${dtxnid}" />
+    
 
     <c:if test="${dtxnid != '0'}">
 
@@ -51,14 +51,13 @@
             <c:param name="ack" value="1" />
             <c:param name="date" value="${param.sent_date}" />
         </c:import>
-        <br>
-        <c:out value="${result_file}" />
+    
 
         <c:set var="result_file"
                value="${fn:substringAfter(result_file,'?')}" />
         <c:set var="file" value="${fn:substringBefore(result_file,'&')}" />
-        <br>
-        <c:out value="${file}" />
+
+      
 
         <%
             showstatus.initializeDB(getServletContext().getInitParameter("url"), getServletContext().getInitParameter("user"), getServletContext().getInitParameter("password"));

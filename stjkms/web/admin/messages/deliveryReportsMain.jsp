@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
 <sql:query var="result" dataSource="${con}"
-           sql="select * from campaigns order by sent_date" />
+           sql="select * from campaigns order by sent_date desc" />
 
 <c:set var="i" value="1"/>
 
@@ -61,7 +61,7 @@
 
 <script>
                                         $(document).ready(function () {
-                                            $('#contactsTable').DataTable();
+                                            $('#campaignsTable').DataTable();
                                         });
 </script>
 

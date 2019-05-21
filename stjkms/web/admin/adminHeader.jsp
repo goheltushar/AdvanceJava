@@ -170,7 +170,7 @@
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#changePasswordModal">
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/changePassword.jsp" >
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Update Password
                                 </a>
@@ -189,7 +189,7 @@
 
                 <%@include file="../mymodals/logout.html" %>
 
-                <%@include file="../mymodals/changepassword.html" %>
+            
 
                 <%@include file="../mymodals/profile.html" %>
 
